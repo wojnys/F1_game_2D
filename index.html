@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
+  />
+  <title>Document</title>
+</head>
+<body>
+<style>
+/*drivers slider*/
+html,
+      body {
+        position: relative;
+        height: 50%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+      }
+
+      .swiper-slide {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+      }
+
+    body{
+        width:100%;
+        text-align: center;
+    }
+      body button{
+          margin-top:30px;
+        display:flex;
+        margin:auto;
+        width:50%;
+      }
+
+      img{
+        height:300px;
+      }
+
+
+
+
+/*Evaluation box*/
+  .evaluationBox-all
+  {
+    width:75%;
+    height:25px;
+    border:1px solid black;
+    background-color: red;
+    position: relative;
+    margin: auto;
+    
+  }
+  .evaluationBox-fill{
+    width:0%;
+    height:100%;
+    background: chartreuse;
+    
+  }
+  .Evaluation{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    font-weight: bold;
+  }
+
+
+/*circuits slider*/
+
+
+/*start game btn and container*/
+.choose{
+  margin-top:20px;
+  text-shadow: 1px 2px 0px  crimson;
+}
+
+
+.start-btn{
+  width:200px;
+  height:50px;
+  font-size: 35px;
+  text-align: center;
+  background: green;
+  border-radius: 5px;
+  border: none;
+  color:white;
+  margin-top: 50px;
+}
+.start-btn:hover{
+  background: rgb(88, 161, 14);
+  transition: 1s ease;
+}
+
+
+</style>
+
+<!-- drivers-->
+<h1 class="choose">Select a Driver:</h1>
+
+<div class="swiper mySwiperDrivers">
+  <div class="swiper-wrapper">
+
+
+    <!--MAX VERSTAPPEN INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Max Verstappen</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation" value="98" data="98">98</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>      
+      <img src="./assets/max.jpg" />
+    </div>
+
+      <!--LEWIS HAMILTON INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Lewis Hamilton</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation">96</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>
+      <img src="./assets/lewis.jpg" />
+    </div>
+  
+      <!--SERGION PEREZ INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Daniel Ricciardo</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation">92</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>
+      <img src="./assets/daniel.jpg" />
+    </div>
+
+     <!--CHARLES LECLERC INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Charles Leclerc</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation">91</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>
+      <img src="./assets/charles.jpg" />
+    </div>
+
+
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+
+
+
+
+<!--circuits-->
+<h1 class="choose">Select Circuit:</h1>
+
+<div class="swiper mySwiperCircuits">
+  <div class="swiper-wrapper">
+
+
+    <!--MAX VERSTAPPEN INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Hungario Ring</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation" value="98" data="98">92</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>      
+      <img src="./assets/hungarioring.jpg" />
+    </div>
+
+      <!--LEWIS HAMILTON INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Monza</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation">70</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>
+      <img src="./assets/monza.jpg" />
+    </div>
+  
+      <!--SERGION PEREZ INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Spa</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation">69</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>
+      <img src="./assets/spa.jpg" />
+    </div>
+
+     <!--CHARLES LECLERC INFO-->
+    <div class="swiper-slide">
+      <div class="Name">Mexico</div>
+      <div class="evaluationBox-all">
+        <div class="Evaluation">75</div>
+        <div class="evaluationBox-fill">
+        </div>
+      </div>
+      <img src="./assets/mexico.jpg" />
+    </div>
+
+
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+
+</div>
+<div class="start-game-btn">
+  <button type="submit" class="start-btn">Start Game</button>
+</div>
+
+<!--drivers slider-->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+
+  /*drivers swiper*/
+    var swiper = new Swiper(".mySwiperDrivers",{
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },    
+           
+      });
+
+
+      /*circuits swiper*/
+      var swiper = new Swiper(".mySwiperCircuits",{
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },    
+         
+    });
+
+
+
+
+/*Evaluation box */
+
+let countOfChildren = $(".Evaluation").length;  //zjisti pocet zaznamu ve slideru (pocet skinu)
+
+  for(i=0;i<countOfChildren;i++)
+  {
+    let CurrentEvaluation = $('.Evaluation').eq(i).text();  //zjisti konkretni child (konkretni hodnotu, cislo)
+    $('.evaluationBox-fill').eq(i).css("width", CurrentEvaluation+"%");   //upravi width child (zelena barvicka) 
+    
+  }
+
+
+
+  var mySwiperDrivers = document.querySelector('.mySwiperDrivers').swiper;  //definujeme si promenou mySwiper a muzeme pouzivat ruzne metody a funkce
+  var mySwiperCircuits = document.querySelector('.mySwiperCircuits').swiper;  //definujeme si promenou mySwiper a muzeme pouzivat ruzne metody a funkce
+
+
+document.querySelector(".start-btn").addEventListener("click",()=>{
+  let DriverId = mySwiperDrivers.realIndex;
+  let CircuitId = mySwiperCircuits.realIndex;
+  console.log("driver id:  " + mySwiperDrivers.realIndex);  //kdyz kliknu na tlaticko "Start Game" tak se v konzoli robrazi cislo konkretniho slideru na kterem se nachazim (konkretni driver)
+  console.log("circuit id: " + mySwiperCircuits.realIndex);  //kdyz kliknu na tlaticko "Start Game" tak se v konzoli robrazi cislo konkretniho slideru na kterem se nachazim (konkretni curcuit)
+
+                 $.ajax({   //ulozi vybraneho ridice a okruh do databaze (update databaze)
+                    url:'./phps/insertData.php',
+                    method:'POST',
+                    data:{
+                        driver:DriverId,
+                        circuit:CircuitId
+                    },
+                 
+                });
+                
+          window.location.href ="game.html";
+  })
+ 
+
+
+
+
+
+ 
+
+
+</script>
+</body>
+</html>

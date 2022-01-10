@@ -1,0 +1,85 @@
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script>
+
+    $.ajax({
+        url : './phps/readData.php', // precte data z mysql databaze a vypise konkretniho drivera a circuit
+        type : 'GET', 
+        success : function(data){
+           var data = jQuery.parseJSON(data);
+           console.log(data);
+
+           document.querySelector(".driver").innerHTML =  data[0];   //obsahuje id od drivera
+           document.querySelector(".circuit").innerHTML = data[1];   //obsahuje id od circuit
+        }
+     });
+
+
+</script>
+</body>
+</html>-->
+
+<!doctype html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8" />
+    <title>Making your first Phaser 3 Game - Part 4</title>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+  <h5>DRIVER:<span class="driver"></span></h5>
+<h5>CIRCUIT:<span class="circuit"></span></h5>
+
+
+<!--<script src="scripts/race track.js"></script>-->
+<script src="./scripts/car.js"></script>
+<script src="./scripts/circuit.js"></script>
+<script src="./scripts/collision_detection.js"></script>
+<script src="./scripts/lights.js"></script>
+<script src="./scripts/timeMeasure.js"></script>
+<script src="./scripts/finishRace.js"></script>
+<script src="./scripts/main.js"></script>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+</body>
+</html>
