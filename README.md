@@ -12,7 +12,7 @@
  Also I create some sound animations, when car is in move so you can hear different sound when car go to curve.
 ![image](https://user-images.githubusercontent.com/77916807/149212687-0e203de6-f9c1-4db7-929f-7ab088f63bcb.png)
 
-And after game is over and you are redirect back to inde page.
+And after game is over and you are redirect back to index page.
 
 - I want add:
 - Better graphics
