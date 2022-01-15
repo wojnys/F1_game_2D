@@ -16,9 +16,11 @@ class Collision{
 //vytvori kolizi mezi autem a okruhem
  create ()
 {
+
+    //arcade physics
    // this.scene.cameras.main.centerOn(0, 0);
    
-   wizball[0] = this.scene.physics.add.staticImage(323, 655, 'wizball').setCircle(45);
+  /* wizball[0] = this.scene.physics.add.staticImage(323, 655, 'wizball').setCircle(45);
    wizball[1] = this.scene.physics.add.staticImage(577, 661, 'wizball').setCircle(45);
    wizball[2] = this.scene.physics.add.staticImage(563, 322, 'wizball').setCircle(45);
    wizball[3] = this.scene.physics.add.staticImage(317, 315, 'wizball').setCircle(45); 
@@ -40,16 +42,27 @@ class Collision{
      for(let i=0;i<this.index;i++)
     {
         this.scene.physics.add.collider(wizball[i],f1_car);
-        wizball[i].setVisible(false);
+        wizball[i].setVisible(true);
       
-    }
+    }*/
 
 
-   
+
+//matter physics
+
+    //tvori mi to kolizi mezi hracem a okruhem( uvnitr) aby si hrac nemohl zkratit cestu
+ for(let ix=330;ix<=580;ix+=50){
+     for(let iy=319;iy<=680;iy+=50){
+       wizball[0]=this.scene.matter.add.image(ix, iy, 'wizball', null, { isStatic: true }).setScale(1, 1).setAngle(1);
+       wizball[0].setVisible(false);
+     }
+ }
 
 
-       //tohle generuje na klik body ktere chci aby se zobrazily 
-   /*this.scene.input.on(Phaser.Input.Events.POINTER_UP, function (pointer) {
+
+
+//tohle generuje na klik body ktere chci aby se zobrazily 
+  /* this.scene.input.on(Phaser.Input.Events.POINTER_UP, function (pointer) {
     
     const x = Phaser.Math.Snap.Floor(pointer.x,1);
     const y = Phaser.Math.Snap.Floor(pointer.y,1);

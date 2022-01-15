@@ -1,15 +1,18 @@
 
 let text=0;
 let car_time=0;
-let ms=0;
-let s=0;
-let m=0;
+
+var seconds=0;
+var minutes=0;
+let timer=0;
+let setActualTime=0;
 class TimeMeasure{
     constructor(scene){
         this.scene = scene;
 
         this.create();
-        this.update();
+        
+        
     }
 
     create(){
@@ -19,13 +22,15 @@ class TimeMeasure{
             align: "center"
         });
 
-
+        
     }
 
-    update(){
-
+    update(time,delta){
         if(StartRace==true){
-            ms++;
+            seconds = time * 0.001 -(lights_time_cover);
+            text.setText(Phaser.Math.RoundTo(seconds,-3));
+            
+          /*  ms++;
             if(m<10){
                
                     if(s<10){
@@ -55,7 +60,7 @@ class TimeMeasure{
             if(s>=60){
                 m++;
                 s=0;
-            }
+            }*/
 
             
 

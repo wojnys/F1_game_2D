@@ -1,8 +1,4 @@
 
-
-
-
-
 //id drivera a circuitu se nacte z databaze
 let driverID=0;
 let circuitID =0;
@@ -43,33 +39,64 @@ let wizball=[];
 let index=0;
 let line1=0;
 
+
+let timeEvent=0;
+let test_text=0;
+
+
 class MainScene extends Phaser.Scene
 {
+  
   constructor(){
-		super({key: 'SceneMain'});
-	}
+	//	super({key: 'SceneMain'},physics: { arcade: { debug: true, gravity: { y: 0 } }, matter: { debug: true, gravity: { y: 0 });
+  
+    super({
+      key: 'SceneMain',
+      physics: {
+        arcade: {
+          //debug: true,
+          gravity: { y: 0 }
+        },
+        matter: {
+         // debug: true,
+          gravity: { y: 0 },
+         // debugShowBody: true,
+          debugBodyColor: 0x0000ff
+        }
+      }
+    });
+  }
+
+
 
 
  preload()
 {
+ 
 //choose skins
  if(driverID==0)
  {
-  this.load.spritesheet("f1_car","assets/car_spritesheet0.png",{frameWidth:79,frameHeight:74});
+  //this.load.spritesheet("f1_car","assets/car_spritesheet0.png",{frameWidth:79,frameHeight:74});
+  this.load.image('f1_car', 'assets/formula0.png');
+  
  }
  if(driverID==1)
  {
-  this.load.spritesheet("f1_car","assets/car_spritesheet1.png",{frameWidth:79,frameHeight:74});
+  //this.load.spritesheet("f1_car","assets/car_spritesheet1.png",{frameWidth:79,frameHeight:74});
+  this.load.image('f1_car', 'assets/formula1.png');
  }
  if(driverID==2)
  {
-  this.load.spritesheet("f1_car","assets/car_spritesheet2.png",{frameWidth:79,frameHeight:74});
+  //this.load.spritesheet("f1_car","assets/car_spritesheet2.png",{frameWidth:79,frameHeight:74});
+  this.load.image('f1_car', 'assets/formula2.png');
  }
  if(driverID==3)
  {
-  //this.load.spritesheet("f1_car","assets/car_spritesheet3.png",{frameWidth:98,frameHeight:72});
-  this.load.spritesheet("f1_car","assets/car_spritesheet3.png",{frameWidth:79,frameHeight:74});
+  //this.load.spritesheet("f1_car","assets/car_spritesheet3.png",{frameWidth:79,frameHeight:74});
+  this.load.image('f1_car', 'assets/formula3.png');
  }
+
+
   
  //car and circuit things
   this.load.audio("f1_sound_start","audio/f1_sound.mp3");
@@ -87,6 +114,12 @@ this.load.image("start_car_position","assets/f1_next_top.png");
 
 
 
+ //checkpoints
+ this.load.image("checkpoint",'assets/checkpoint.png');
+
+
+ //smoke
+ this.load.image("smoke","assets/smoke.png");
 
 
  //nacteni textur pro okruh
@@ -105,12 +138,14 @@ this.load.image("start_car_position","assets/f1_next_top.png");
 
  create ()
 {
+  this.physics.world.setFPS(30);
 
   //inicialitujeme classy
   this.circuit = new Circuit(this);
   this.circuit.create();   //vygeneruje zavodni okruh
 
   this.car = new Car(this);  //vygeneruje formuli
+  this.car.create();
 
   this.collision = new Collision(this);   //colize mezi autem a trati
   this.collision.create();
@@ -126,6 +161,17 @@ this.load.image("start_car_position","assets/f1_next_top.png");
 
   
 
+
+
+
+
+
+
+
+
+
+
+/*
 
 this.anims.create({
 key: 'left',
@@ -150,7 +196,7 @@ key: 'up',
 frames: this.anims.generateFrameNumbers('f1_car', { start: 0, end: 0 }),
 frameRate: 10,
 repeat: -1
-});
+});*/
 
 
 
@@ -170,24 +216,38 @@ repeat: -1
 }
 
 
- update ()
+ update (time,delta)
 {
+ 
 
 if(StartRace==true)  //pouze kdyz zhasnou vsechny svetla muze se auto rozjet
 {
   this.car.updatePosition();  //update pozice auto (movement)
 }
   
-this.lights.LightsUpdate();  //update svetel, kazdych 50ms se jedno svetlo zhasne (na zacatku zavodu)
-this.time.update();
+this.lights.LightsUpdate(time,delta);  //update svetel, kazdych 50ms se jedno svetlo zhasne (na zacatku zavodu)
+if(StartRace==true){
+ 
+  this.time.update(time,delta);
+}
+
 
 
 this.finishRace.countLaps(3);  //3 je zmanema pocet kol
+this.finishRace.updateCheckPoints();
 this.finishRace.crossFinishLine();
+
+
+
+
+
 }
 
 
+
 }
+
+
 
 
 
@@ -197,18 +257,23 @@ var config = {
   type: Phaser.AUTO,
   width: 1300,
   height: 1000,
+  scene: [MainScene],
   physics: {
-      default: 'arcade',
+      //default: 'arcade',
+      //default: 'matter',
       debug: true,
       gravity:{y:0},
   
   },
+  
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
 },
-  scene: MainScene,
+
+  
 };
+
 
 
 
