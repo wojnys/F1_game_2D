@@ -1,5 +1,4 @@
 let cursors1=0;
-let particles=0;
 
 var emitter=0;
 
@@ -12,21 +11,45 @@ var SoundOfLeft=false;
 var SoundOfRight = false;
 
 var car_stop=1;
+
+var particles=0;
+var rt;
+var up_gas = false;
+
+//vlastnosti auta
+var cars_features=[
+  {
+    carID:"0",
+    carName:"RedBull",
+    speed:0.21,
+    curve:0.08,
+  },
+  {
+    carID:"1",
+    carName:"Mercedes",
+    speed:0.22,
+    curve:0.06,
+  },
+  {
+    carID:"2",
+    carName:"Mclaren",
+    speed:0.20,
+    curve:0.05,
+  },
+  {
+    carID:"3",
+    carName:"Ferrari",
+    speed:0.18,
+    curve:0.05,
+  },
+
+];
+
 class Car{
     constructor(scene){
         //musime nacist scenu
         this.scene = scene;
 
-
-        //nacteme hodnoty do promenych
-         /*cursors = scene.input.keyboard.addKeys({ 'left': Phaser.Input.Keyboard.KeyCodes.A, 'right': Phaser.Input.Keyboard.KeyCodes.D,'up':Phaser.Input.Keyboard.KeyCodes.W,'down':Phaser.Input.Keyboard.KeyCodes.S});
-         f1_car = scene.physics.add.sprite(218,490,"f1_car");
-         f1_sound_start = scene.sound.add("f1_sound_start");
-         f1_sound_change_direction = scene.sound.add("f1_sound_change_direction");
-    
-
-        //napiseme funkce ktere jsme vytvorili (musime je zde napsat)   
-        f1_car.angle=0;*/
 
 
         //definujeme hodnoty promenych
@@ -48,40 +71,33 @@ class Car{
 create() {
 
   f1_car.angle+=-45;  //vycentuje at je auto hezky rovne
-       
-   
+
+ 
+    
+  
+/*
+      var path = new Phaser.Curves.Path(f1_car.x+15, f1_car.y+35).circleTo(5).moveTo(40, 30);
+  
+       particles = this.scene.add.particles('flares');
+  
+      particles.createEmitter({
+          frame: { frames: [ 'red', 'green', 'blue' ], cycle: true },
+          scale: { start: 0.5, end: 0 },
+          blendMode: 'ADD',
+          emitZone: { type: 'edge', source: path, quantity: 45, yoyo: false },
+          
+      });*/
+     
+
+      particles = this.scene.add.particles('flares');  //vytvori particles pro drifty
+  
+
       
   f1_car.setFrictionAir(0.5);   //nastavi jakoby hustotu vzduchu
   f1_car.setMass(30);            //nastavi hmotu formule
   f1_car.setFixedRotation();     //Nastavením pevné rotace se nastaví setrvačnost těla na nekonečno, což zabrání tomu, aby se mohlo otáčet, když na něj působí síly. (kdyz do neho nekdo narazi treba)
  
 
-
-
- /*var emitter = particles.createEmitter({
-      speed: {
-          onEmit: function (particle, key, t, value)
-          {
-              return f1_car.body.speed * 10;
-          }
-      },
-      lifespan: {
-          onEmit: function (particle, key, t, value)
-          {
-              return Phaser.Math.Percent(f1_car.body.speed, 0, 30) * 400;
-          }
-      },
-      alpha: {
-          onEmit: function (particle, key, t, value)
-          {
-              return Phaser.Math.Percent(f1_car.body.speed, 0, 30)*100;
-          }
-      },
-      scale: { start: 1.0, end: 0 },
-      blendMode: 'ADD'
-  });
-
-  emitter.startFollow(f1_car);*/
 
    start_sound = new Howl({
     src: ['./audio/f1_start_sound.mp3'],
@@ -112,10 +128,12 @@ create() {
   
 }
 
-updatePosition(){
-  
-  
 
+
+
+updatePosition(){
+
+  
 if(cursors1.left.isDown)
 {
 
@@ -133,18 +151,53 @@ if(cursors1.left.isDown)
     
   
 
+if(up_gas == true){
+  f1_car.thrust(0.008);  //kdyz je zaroven up cursor zmacknuty
+}
 
-  f1_car.thrust(0.008);  //tohle je tady navic (aby kdyz kliknu na tlacitko, tak aby se formule pouze netocila do kolecka ale vypadalo to jako by driftovala)
-  f1_car.setAngularVelocity(-0.08);
+
+if(up_gas==false && cursors1.down.isDown){
+  f1_car.thrust(0.08);  //tohle je tady navic (aby kdyz kliknu na tlacitko, tak aby se formule pouze netocila do kolecka ale vypadalo to jako by driftovala)
 
   
+  //particly se muzou pouzit pouze jednou (drifting)
+/*  particles.createEmitter({
+    frames: 'smoke-puff',
+    x: f1_car.x+10,
+    y: f1_car.y+10,
+    lifespan: 1500,
+    
+   // lifespan:-2000,
+    speedX: { start: -50, end: 100, steps: 25 },
+    speedY: { min: -50, max: 50 },
+    scale: { start: 0.1, end:  0.02 },
+    blendMode: 'ADD'
+});*/
+  
+
+}
+
+/*
+//kdyz pustime S tak se particly smazou
+if(cursors1.down.isDown==false){
+  setTimeout(()=>{
+    particles.destroy();
+  },3000);
+
+}*/
+
+  
+  
+    f1_car.setAngularVelocity(-1*(cars_features[driverID].curve));
+
   
 }
 
 
+
  if(cursors1.right.isDown)
 {
-  
+
   if (this.playing2 !== true && this.playing3 !== true) {
     /*f1_sound_change_direction.play();
     f1_sound_start.stop();*/
@@ -157,9 +210,15 @@ if(cursors1.left.isDown)
     this.playing3 = true;
 }
 
-  
-  f1_car.thrust(0.008);  //tohle je tady navic (aby kdyz kliknu na tlacitko, tak aby se formule pouze netocila do kolecka ale vypadalo to jako by driftovala)
-  f1_car.setAngularVelocity(0.08);  
+if(up_gas == true){
+  f1_car.thrust(0.008);  //kdyz je zaroven up cursor zmacknuty, tak je pohyb do zatacky pomalejsi 
+}
+
+if(up_gas==false){
+  f1_car.thrust(0.08);  //tohle je tady navic (aby kdyz kliknu na tlacitko, tak aby se formule pouze netocila do kolecka ale vypadalo to jako by driftovala)
+}
+
+  f1_car.setAngularVelocity(cars_features[driverID].curve); 
 
  
 }
@@ -169,7 +228,7 @@ if(cursors1.left.isDown)
   if(cursors1.up.isDown)
 {
  
-  
+  up_gas=true;
 
   if (this.playing3 !== true && SoundOfLeft===false && SoundOfRight===false) {
    /* f1_sound_start.play();
@@ -211,7 +270,7 @@ SoundOfLeft =true;
      this.playing = true;
      this.playing2 = false;
      this.playing3 = false;
-     console.log("zatacka do leva");
+     //console.log("zatacka do leva");
  }
 }
 
@@ -229,7 +288,7 @@ SoundOfLeft =true;
        this.playing = false;
        this.playing2 = true;
        this.playing3 = false;
-       console.log("zatacka do prava");
+      // console.log("zatacka do prava");
    }
 
   }
@@ -238,15 +297,19 @@ SoundOfLeft =true;
     SoundOfRight =false;
   }
 
+  
+  f1_car.thrust(cars_features[driverID].speed); //nastavi rychlost formule na rovincea
 
-  f1_car.thrust(0.18);  //nastavi rychlost formule na rovincea
- 
 }
+
+if(cursors1.up.isDown==false){ //kdyz neni up cursor zmacknuty 
+  up_gas=false;  //promenna se nahraje do false (je to kvuli zatackam aby auto nejelo prisil rychle a aby se na misto pouze nerotovalo)
+}
+
 
 
 //provede se kdyz zadna klavesa nenni zamacknuta (auto stoji na miste)
 
-else{
   if(cursors1.left.isDown==false && cursors1.right.isDown==false&&cursors1.up.isDown==false){
    /* f1_sound_change_direction.stop();
     f1_sound_start.stop();*/
@@ -258,15 +321,11 @@ else{
     SoundOfRight=false;
     this.playing3=false;
     car_stop=1;
-
+   // particles.destroy();  //smazu particles
+    console.log("mazu");
   }
-   
+
   
-
-    
-  }
-
-
 }
 
 }

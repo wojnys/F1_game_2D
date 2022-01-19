@@ -76,23 +76,23 @@ class MainScene extends Phaser.Scene
 //choose skins
  if(driverID==0)
  {
-  //this.load.spritesheet("f1_car","assets/car_spritesheet0.png",{frameWidth:79,frameHeight:74});
+
   this.load.image('f1_car', 'assets/formula0.png');
   
  }
  if(driverID==1)
  {
-  //this.load.spritesheet("f1_car","assets/car_spritesheet1.png",{frameWidth:79,frameHeight:74});
+
   this.load.image('f1_car', 'assets/formula1.png');
  }
  if(driverID==2)
  {
-  //this.load.spritesheet("f1_car","assets/car_spritesheet2.png",{frameWidth:79,frameHeight:74});
+
   this.load.image('f1_car', 'assets/formula2.png');
  }
  if(driverID==3)
  {
-  //this.load.spritesheet("f1_car","assets/car_spritesheet3.png",{frameWidth:79,frameHeight:74});
+
   this.load.image('f1_car', 'assets/formula3.png');
  }
 
@@ -120,7 +120,7 @@ this.load.image("start_car_position","assets/f1_next_top.png");
 
  //smoke
  this.load.image("smoke","assets/smoke.png");
-
+ this.load.atlas('flares', 'assets/smoke.png', 'assets/flares.json');
 
  //nacteni textur pro okruh
   this.load.setPath('assets_racing/racing/');
@@ -159,44 +159,7 @@ this.load.image("start_car_position","assets/f1_next_top.png");
   this.finishRace = new FinishRace(this);  //vytvori kdyz auto projede cilovou carou(pocita kola)
   this.finishRace.create();
 
-  
 
-
-
-
-
-
-
-
-
-
-
-/*
-
-this.anims.create({
-key: 'left',
-frames: this.anims.generateFrameNumbers('f1_car', { start: 1, end: 1 }),
-frameRate: 10,
-repeat: -1
-});
-this.anims.create({
-key: 'right',
-frames: this.anims.generateFrameNumbers('f1_car', { start: 2, end: 2 }),
-frameRate: 10,
-repeat: -1
-});
-this.anims.create({
-key: 'down',
-frames: this.anims.generateFrameNumbers('f1_car', { start: 3, end: 3 }),
-frameRate: 10,
-repeat: -1
-});
-this.anims.create({
-key: 'up',
-frames: this.anims.generateFrameNumbers('f1_car', { start: 0, end: 0 }),
-frameRate: 10,
-repeat: -1
-});*/
 
 
 

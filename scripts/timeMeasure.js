@@ -29,38 +29,7 @@ class TimeMeasure{
         if(StartRace==true){
             seconds = time * 0.001 -(lights_time_cover);
             text.setText(Phaser.Math.RoundTo(seconds,-3));
-            
-          /*  ms++;
-            if(m<10){
-               
-                    if(s<10){
-                        car_time = "0"+m+":0"+s+":"+ms;
-                    }
-                    else{
-                        car_time = "0"+m+":"+s+":"+ms;
-                    }
-                
-                
-            }
-            if(m>=10){
-                if(s<10){
-                    car_time = m+":0"+s+":"+ms;
-                }
-                else{
-                    car_time = m+":"+s+":"+ms;
-                }
-            }
-
-            text.setText(car_time);
-
-            if(ms>=100){
-                s++;
-                ms=0;
-            }
-            if(s>=60){
-                m++;
-                s=0;
-            }*/
+     
 
             
 
