@@ -156,7 +156,7 @@ if(up_gas == true){
 }
 
 
-if(up_gas==false && cursors1.down.isDown){
+if(up_gas==false /*&& cursors1.down.isDown*/){
   f1_car.thrust(0.08);  //tohle je tady navic (aby kdyz kliknu na tlacitko, tak aby se formule pouze netocila do kolecka ale vypadalo to jako by driftovala)
 
   
