@@ -43,6 +43,9 @@ let line1=0;
 let timeEvent=0;
 let test_text=0;
 
+const Width = 1300;
+const Height = 1000;
+
 
 class MainScene extends Phaser.Scene
 {
@@ -139,7 +142,7 @@ this.load.image("start_car_position","assets/f1_next_top.png");
  create ()
 {
   this.physics.world.setFPS(30);
-
+  
   //inicialitujeme classy
   this.circuit = new Circuit(this);
   this.circuit.create();   //vygeneruje zavodni okruh
@@ -218,8 +221,8 @@ this.finishRace.crossFinishLine();
 //nastaveni okna 
 var config = {
   type: Phaser.AUTO,
-  width: 1300,
-  height: 1000,
+  width: Width,
+  height: Height,
   scene: [MainScene],
   physics: {
       //default: 'arcade',

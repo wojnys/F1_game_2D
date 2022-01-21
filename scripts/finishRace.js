@@ -13,7 +13,7 @@ class FinishRace{
         this.scene=scene;
 
         this.finishLine = this.scene.physics.add.image(207,384,"finish");
-        checkPoints = this.scene.physics.add.image(628, 235, 'checkpoint', null, { isStatic: true });  //vytvorim prvni checkpoint
+        checkPoints = this.scene.physics.add.image(circuit_features[circuitID].checkPointsPosition[0], circuit_features[circuitID].checkPointsPosition[1], 'checkpoint', null, { isStatic: true });  //vytvorim prvni checkpoint
         
 
         
@@ -48,8 +48,8 @@ class FinishRace{
 
 
     let checkPointCheck = this.checkOverlap(f1_car,checkPoints);  //kontroluje jeslti auto projizdi checkpointy(proti cheaterum)
-    console.log(checkPointCheck);
-    checkPoints.setVisible(false); //checkpoint je pro hrace neviditelny ale fyzicky porad exituje (aby ho hrac nemohl videt)
+    //console.log(checkPointCheck);
+    checkPoints.setVisible(true); //checkpoint je pro hrace neviditelny ale fyzicky porad exituje (aby ho hrac nemohl videt)
 
     if(checkPointCheck==true){  //kdyz je overlap mezi f1_car a checkpointem tak se provede podminka
 
@@ -58,12 +58,12 @@ class FinishRace{
     
 
     if(count_check%2==1){
-    checkPoints = this.scene.physics.add.image(234, 734, 'checkpoint', null, { isStatic: true });   //zobrazi se druhy checkpoint kterym musi hrar projet a takhle se to opakuje do kola az neni konec
+    checkPoints = this.scene.physics.add.image(circuit_features[circuitID].checkPointsPosition[2], circuit_features[circuitID].checkPointsPosition[3], 'checkpoint', null, { isStatic: true });   //zobrazi se druhy checkpoint kterym musi hrar projet a takhle se to opakuje do kola az neni konec
     lap_complete=false;  //promenna ktere je pro kontroly projeli vsemi chekpointy
     }
 
     if(count_check%2==0){
-    checkPoints = this.scene.physics.add.image(628, 235, 'checkpoint', null, { isStatic: true });   //zobrazi se druhy checkpoint kterym musi hrar projet a takhle se to opakuje do kola az neni konec
+    checkPoints = this.scene.physics.add.image(circuit_features[circuitID].checkPointsPosition[0], circuit_features[circuitID].checkPointsPosition[1], 'checkpoint', null, { isStatic: true });   //zobrazi se druhy checkpoint kterym musi hrar projet a takhle se to opakuje do kola az neni konec
     lap_complete=false;  //promenna ktere je pro kontroly projeli vsemi chekpointy
     }
 
@@ -93,10 +93,10 @@ class FinishRace{
     if(finish==true && lap_complete!=true && lap_complete!="0_lap"){ //pokud jsme nejaky checkpoint vynechali tak se se nam ukaze tahle zprava
         count_check=0;
         checkPoints.visible=false;
-        checkPoints = this.scene.physics.add.image(628, 235, 'checkpoint', null, { isStatic: true });  //vytvorim prvni checkpoint opet
+        checkPoints = this.scene.physics.add.image(circuit_features[circuitID].checkPointsPosition[0], circuit_features[circuitID].checkPointsPosition[1], 'checkpoint', null, { isStatic: true });  //vytvorim prvni checkpoint opet
         anounce_miss_lap.visible=true; //text o tom se jsem vjel mimo okruh tady nastavim na visible
         anounce_miss_lap.setText("VYJEL SI MIMO DRAHU A NEPROJEL CHECKPOINTEM. kole se nepocita");
-        console.log("ewhat");
+      
         lap_complete=false;
 
         setTimeout(() => { //po 5 sekundach se smaze hlaska o tom ze neprojel chekcpointem

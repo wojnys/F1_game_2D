@@ -21,14 +21,14 @@ var cars_features=[
   {
     carID:"0",
     carName:"RedBull",
-    speed:0.21,
+    speed:0.22,
     curve:0.08,
   },
   {
     carID:"1",
     carName:"Mercedes",
     speed:0.22,
-    curve:0.06,
+    curve:0.07,
   },
   {
     carID:"2",
@@ -39,12 +39,17 @@ var cars_features=[
   {
     carID:"3",
     carName:"Ferrari",
-    speed:0.18,
+    speed:0.19,
     curve:0.05,
   },
 
 ];
 
+
+var graphics;
+var follower;
+var path;
+var objects=[];
 class Car{
     constructor(scene){
         //musime nacist scenu
@@ -73,7 +78,16 @@ create() {
   f1_car.angle+=-45;  //vycentuje at je auto hezky rovne
 
  
+ /* var path2 = new Phaser.Curves.Path(100, 200).lineTo(500, 300).lineTo(500,300).lineTo(300,200).ellipseTo(200, 100, 100, 300, false, 45);
+  var graphics = this.scene.add.graphics();
+  graphics.lineStyle(1, 0xffffff, 1);
+  path2.draw(graphics,128);*/ 
+
     
+
+    
+
+
   
 /*
       var path = new Phaser.Curves.Path(f1_car.x+15, f1_car.y+35).circleTo(5).moveTo(40, 30);
@@ -89,7 +103,8 @@ create() {
       });*/
      
 
-      particles = this.scene.add.particles('flares');  //vytvori particles pro drifty
+
+    //  particles = this.scene.add.particles('flares');  //vytvori particles pro drifty
   
 
       
@@ -132,6 +147,9 @@ create() {
 
 
 updatePosition(){
+
+
+
 
   
 if(cursors1.left.isDown)
@@ -322,7 +340,7 @@ if(cursors1.up.isDown==false){ //kdyz neni up cursor zmacknuty
     this.playing3=false;
     car_stop=1;
    // particles.destroy();  //smazu particles
-    console.log("mazu");
+    
   }
 
   
